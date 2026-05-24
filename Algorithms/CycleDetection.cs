@@ -11,7 +11,7 @@ public class CycleDetection
     public void Run()
     {
         Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine(" CYCLE DETECTION (DFS Coloring)");
+        Console.WriteLine(" DÖNGÜ TESPİTİ (DFS Renklendirme)");
         Console.WriteLine("═══════════════════════════════");
         Console.WriteLine();
 
@@ -31,12 +31,12 @@ public class CycleDetection
 
         if (cyclePath != null)
         {
-            Console.WriteLine("Result: Cycle FOUND!");
-            Console.WriteLine($"Cycle path: {string.Join(" → ", cyclePath)}");
+            Console.WriteLine("Sonuç: Döngü BULUNDU!");
+            Console.WriteLine($"Döngü yolu: {string.Join(" → ", cyclePath)}");
         }
         else
         {
-            Console.WriteLine("Result: No cycle detected.");
+            Console.WriteLine("Sonuç: Döngü tespit edilmedi.");
         }
 
         Console.WriteLine();

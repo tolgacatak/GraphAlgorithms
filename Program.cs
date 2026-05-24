@@ -3,21 +3,21 @@ using GraphAlgorithms.Algorithms;
 while (true)
 {
     Console.Clear();
-    Console.WriteLine("╔═══════════════════════════════════════════╗");
-    Console.WriteLine("║       GRAPH ALGORITHMS - MAIN MENU        ║");
-    Console.WriteLine("╠═══════════════════════════════════════════╣");
-    Console.WriteLine("║  1. BFS (all start vertices)              ║");
-    Console.WriteLine("║  2. Cycle Detection                       ║");
-    Console.WriteLine("║  3. Dijkstra (positive weights, vertex 0) ║");
-    Console.WriteLine("║  4. Dijkstra (negative weights, vertex 0) ║");
-    Console.WriteLine("║  5. Bellman-Ford (positive weights, v. 0) ║");
-    Console.WriteLine("║  6. Bellman-Ford (negative weights, v. 0) ║");
-    Console.WriteLine("║  7. Dijkstra vs Bellman-Ford comparison   ║");
-    Console.WriteLine("║  8. Floyd-Warshall                        ║");
-    Console.WriteLine("║  9. Prim (all start vertices)             ║");
-    Console.WriteLine("║  0. Exit                                  ║");
-    Console.WriteLine("╚═══════════════════════════════════════════╝");
-    Console.Write("\nSelect an option: ");
+    Console.WriteLine("╔════════════════════════════════════════════╗");
+    Console.WriteLine("║     GRAF ALGORİTMALARI - ANA MENÜ         ║");
+    Console.WriteLine("╠════════════════════════════════════════════╣");
+    Console.WriteLine("║  1. BFS (tüm başlangıç düğümleri)         ║");
+    Console.WriteLine("║  2. Döngü Tespiti                          ║");
+    Console.WriteLine("║  3. Dijkstra (pozitif ağırlıklar, d. 0)   ║");
+    Console.WriteLine("║  4. Dijkstra (negatif ağırlıklar, d. 0)   ║");
+    Console.WriteLine("║  5. Bellman-Ford (poz. ağırlıklar, d. 0)  ║");
+    Console.WriteLine("║  6. Bellman-Ford (neg. ağırlıklar, d. 0)  ║");
+    Console.WriteLine("║  7. Dijkstra - Bellman-Ford kıyası        ║");
+    Console.WriteLine("║  8. Floyd-Warshall                         ║");
+    Console.WriteLine("║  9. Prim (düğüm 0'dan)                    ║");
+    Console.WriteLine("║  0. Çıkış                                  ║");
+    Console.WriteLine("╚════════════════════════════════════════════╝");
+    Console.Write("\nSeçim yapın: ");
 
     var key = Console.ReadLine();
 
@@ -31,11 +31,11 @@ while (true)
             : GraphAlgorithms.Graph.GraphBase.GetDirectedEdges();
         var adj = GraphAlgorithms.Graph.GraphBase.GetAdjacencyList(edges);
 
-        Console.WriteLine("Graph (adjacency list with weights):");
+        Console.WriteLine("Graf (ağırlıklı komşuluk listesi):");
         foreach (var (vertex, neighbors) in adj)
         {
             var neighborsStr = neighbors.Count == 0
-                ? "(no outgoing edges)"
+                ? "(giden kenar yok)"
                 : string.Join(", ", neighbors.Select(n => $"{n.To}({n.Weight})"));
             Console.WriteLine($"  {vertex} → {neighborsStr}");
         }
@@ -63,7 +63,7 @@ while (true)
             BellmanFord.Run(0, useNegativeWeights: true);
             break;
         case "7":
-            Console.WriteLine("Running Bellman-Ford with negative weights (includes Dijkstra comparison)...");
+            Console.WriteLine("Bellman-Ford negatif ağırlıklarla çalıştırılıyor (Dijkstra karşılaştırması dahil)...");
             Console.WriteLine();
             BellmanFord.Run(0, useNegativeWeights: true);
             break;
@@ -71,16 +71,16 @@ while (true)
             new FloydWarshall().Run();
             break;
         case "9":
-            new Prim().RunAll();
+            new Prim().Run(0);
             break;
         case "0":
-            Console.WriteLine("Exiting...");
+            Console.WriteLine("Çıkılıyor...");
             return;
         default:
-            Console.WriteLine("Invalid option. Please try again.");
+            Console.WriteLine("Geçersiz seçim. Tekrar deneyin.");
             break;
     }
 
-    Console.WriteLine("Press any key to return to menu...");
+    Console.WriteLine("Menüye dönmek için bir tuşa basın...");
     Console.ReadKey(true);
 }

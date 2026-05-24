@@ -38,25 +38,25 @@ public class BellmanFord
     private static void PrintResults(int startVertex, int[] dist, int[] prev, bool useNegativeWeights, bool hasNegativeCycle)
     {
         Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine(" BELLMAN-FORD ALGORITHM");
+        Console.WriteLine(" BELLMAN-FORD ALGORİTMASI");
         Console.WriteLine("═══════════════════════════════");
         Console.WriteLine();
 
         if (useNegativeWeights)
-            Console.WriteLine("Using graph with NEGATIVE weights.");
+            Console.WriteLine("NEGATİF ağırlıklı graf kullanılıyor.");
 
         if (hasNegativeCycle)
         {
-            Console.WriteLine("⚠ NEGATIVE CYCLE DETECTED! Shortest paths are undefined.");
+            Console.WriteLine("⚠ NEGATİF DÖNGÜ TESPİT EDİLDİ! En kısa yollar tanımsız.");
             Console.WriteLine();
             return;
         }
 
-        Console.WriteLine("No negative cycle detected.");
+        Console.WriteLine("Negatif döngü tespit edilmedi.");
 
-        Console.WriteLine($"Source vertex: {startVertex}");
+        Console.WriteLine($"Kaynak düğüm: {startVertex}");
         Console.WriteLine();
-        Console.WriteLine($"{"Vertex",-10} {"Distance",-12} Path");
+        Console.WriteLine($"{"Düğüm",-10} {"Mesafe",-12} Yol");
         Console.WriteLine(new string('-', 50));
 
         for (var i = 0; i < GraphBase.VertexCount; i++)
@@ -72,16 +72,16 @@ public class BellmanFord
     private static void PrintComparison(int startVertex, int[] bfDist, int[] bfPrev)
     {
         Console.WriteLine("═══════════════════════════════════════════════════");
-        Console.WriteLine(" DIJKSTRA vs BELLMAN-FORD (Negative Weights)");
+        Console.WriteLine(" DİJKSTRA - BELLMAN-FORD KARŞILAŞTIRMASI (Negatif Ağırlıklar)");
         Console.WriteLine("═══════════════════════════════════════════════════");
         Console.WriteLine();
 
         var dijkstra = new Dijkstra();
         var (djDist, djPrev) = dijkstra.Run(startVertex, useNegativeWeights: true, printResults: false);
 
-        Console.WriteLine($"Source vertex: {startVertex}");
+        Console.WriteLine($"Kaynak düğüm: {startVertex}");
         Console.WriteLine();
-        Console.WriteLine($"{"Vertex",-8} {"Dijkstra",-12} {"Bellman-Ford",-14} {"Match",-8} {"Dijkstra Path",-25} Bellman-Ford Path");
+        Console.WriteLine($"{"Düğüm",-8} {"Dijkstra",-12} {"Bellman-Ford",-14} {"Eşleşme",-8} {"Dijkstra Yolu",-25} Bellman-Ford Yolu");
         Console.WriteLine(new string('-', 95));
 
         for (var i = 0; i < GraphBase.VertexCount; i++)
@@ -97,7 +97,7 @@ public class BellmanFord
         }
 
         Console.WriteLine();
-        Console.WriteLine("[!] = Dijkstra result differs from Bellman-Ford (likely incorrect due to negative weights)");
+        Console.WriteLine("[!] = Dijkstra sonucu Bellman-Ford'dan farklı (negatif ağırlıklar nedeniyle muhtemelen hatalı)");
         Console.WriteLine();
     }
 }

@@ -6,8 +6,13 @@ public class Prim
 {
     private readonly Dictionary<int, List<(int To, int Weight)>> _adj = GraphBase.GetUndirectedAdjacencyList();
 
-    private void Run(int startVertex)
+    public void Run(int startVertex)
     {
+        Console.WriteLine("═══════════════════════════════");
+        Console.WriteLine(" PRİM MST ALGORİTMASI");
+        Console.WriteLine("═══════════════════════════════");
+        Console.WriteLine();
+
         var n = GraphBase.VertexCount;
         var inMst = new bool[n];
         var mstEdges = new List<(int From, int To, int Weight)>();
@@ -45,30 +50,23 @@ public class Prim
             }
         }
 
-        Console.WriteLine($"  Start vertex {startVertex,2}: ");
+        Console.WriteLine($"Kaynak düğüm: {startVertex}");
+        Console.WriteLine();
 
         if (mstEdges.Count < n - 1)
         {
-            Console.WriteLine("    Graph is not fully connected from this vertex.");
+            Console.WriteLine("Graf bu düğümden tamamen bağlı değil.");
         }
         else
         {
+            Console.WriteLine($"{"Kenar",-15} {"Ağırlık"}");
+            Console.WriteLine(new string('-', 25));
             foreach (var (from, to, weight) in mstEdges)
-                Console.WriteLine($"    Edge {from,2} — {to,2}, weight = {weight}");
-            Console.WriteLine($"    Total MST weight: {totalWeight}");
+                Console.WriteLine($"{from,2} — {to,-10} {weight}");
+            Console.WriteLine();
+            Console.WriteLine($"Toplam MST ağırlığı: {totalWeight}");
         }
 
         Console.WriteLine();
-    }
-
-    public void RunAll()
-    {
-        Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine(" PRIM'S MST ALGORITHM");
-        Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine();
-
-        for (var i = 0; i < GraphBase.VertexCount; i++)
-            Run(i);
     }
 }

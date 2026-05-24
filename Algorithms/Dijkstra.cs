@@ -45,21 +45,21 @@ public class Dijkstra
     private void PrintResults(int startVertex, int[] dist, int[] prev, bool useNegativeWeights)
     {
         Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine(" DIJKSTRA'S ALGORITHM");
+        Console.WriteLine(" DİJKSTRA ALGORİTMASI");
         Console.WriteLine("═══════════════════════════════");
         Console.WriteLine();
 
         if (useNegativeWeights)
         {
-            Console.WriteLine("⚠ WARNING: Graph contains negative weights!");
-            Console.WriteLine("  Dijkstra does NOT guarantee correct results with negative edges.");
-            Console.WriteLine("  Results below may be INCORRECT.");
+            Console.WriteLine("⚠ UYARI: Graf negatif ağırlıklar içeriyor!");
+            Console.WriteLine("  Dijkstra negatif kenarlarda doğru sonuç GARANTİLEYEMEZ.");
+            Console.WriteLine("  Aşağıdaki sonuçlar HATALI olabilir.");
             Console.WriteLine();
         }
 
-        Console.WriteLine($"Source vertex: {startVertex}");
+        Console.WriteLine($"Kaynak düğüm: {startVertex}");
         Console.WriteLine();
-        Console.WriteLine($"{"Vertex",-10} {"Distance",-12} {"Path"}");
+        Console.WriteLine($"{"Düğüm",-10} {"Mesafe",-12} {"Yol"}");
         Console.WriteLine(new string('-', 50));
 
         for (var i = 0; i < GraphBase.VertexCount; i++)
@@ -75,7 +75,7 @@ public class Dijkstra
     public static string GetPath(int[] prev, int start, int end)
     {
         if (start == end) return start.ToString();
-        if (prev[end] == -1) return "unreachable";
+        if (prev[end] == -1) return "ulaşılamaz";
 
         var path = new List<int>();
         var current = end;
@@ -86,6 +86,6 @@ public class Dijkstra
         }
         path.Reverse();
 
-        return path[0] != start ? "unreachable" : string.Join(" → ", path);
+        return path[0] != start ? "ulaşılamaz" : string.Join(" → ", path);
     }
 }

@@ -34,14 +34,14 @@ public class BFS
     public void RunAll()
     {
         Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine(" BREADTH-FIRST SEARCH (BFS)");
+        Console.WriteLine(" GENİŞLİK ÖNCE ARAMA (BFS)");
         Console.WriteLine("═══════════════════════════════");
         Console.WriteLine();
 
         for (var i = 0; i < GraphBase.VertexCount; i++)
         {
             var order = Run(i);
-            Console.WriteLine($"Start vertex {i,2}: [{string.Join(", ", order)}]");
+            Console.WriteLine($"Başlangıç düğümü {i,2}: [{string.Join(", ", order)}]");
         }
 
         Console.WriteLine();

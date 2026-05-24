@@ -9,7 +9,7 @@ public class FloydWarshall
     public void Run()
     {
         Console.WriteLine("═══════════════════════════════");
-        Console.WriteLine(" FLOYD-WARSHALL ALGORITHM");
+        Console.WriteLine(" FLOYD-WARSHALL ALGORİTMASI");
         Console.WriteLine("═══════════════════════════════");
         Console.WriteLine();
 
@@ -54,16 +54,16 @@ public class FloydWarshall
 
     private void PrintPathsFromSource(int[,] dist, int[,] next, int n, int sourceVertex)
     {
-        Console.WriteLine($"Source vertex: {sourceVertex}");
+        Console.WriteLine($"Kaynak düğüm: {sourceVertex}");
         Console.WriteLine();
-        Console.WriteLine($"{"Vertex",-10} {"Distance",-12} {"Path"}");
+        Console.WriteLine($"{"Düğüm",-10} {"Mesafe",-12} {"Yol"}");
         Console.WriteLine(new string('-', 50));
 
         for (var j = 0; j < n; j++)
         {
             if (j == sourceVertex) continue;
             var distance = dist[sourceVertex, j] >= Inf ? "INF" : dist[sourceVertex, j].ToString();
-            var path = dist[sourceVertex, j] >= Inf ? "unreachable" : ReconstructPath(next, sourceVertex, j);
+            var path = dist[sourceVertex, j] >= Inf ? "ulaşılamaz" : ReconstructPath(next, sourceVertex, j);
             Console.WriteLine($"{j,-10} {distance,-12} {path}");
         }
 
@@ -72,14 +72,14 @@ public class FloydWarshall
 
     private string ReconstructPath(int[,] next, int from, int to)
     {
-        if (next[from, to] == -1) return "no path";
+        if (next[from, to] == -1) return "yol yok";
 
         var path = new List<int> { from };
         var current = from;
         while (current != to)
         {
             current = next[current, to];
-            if (current == -1) return "no path";
+            if (current == -1) return "yol yok";
             path.Add(current);
         }
 
