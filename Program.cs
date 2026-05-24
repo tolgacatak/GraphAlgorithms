@@ -4,17 +4,17 @@ while (true)
 {
     Console.Clear();
     Console.WriteLine("╔════════════════════════════════════════════╗");
-    Console.WriteLine("║     GRAF ALGORİTMALARI - ANA MENÜ         ║");
+    Console.WriteLine("║     GRAF ALGORİTMALARI - ANA MENÜ          ║");
     Console.WriteLine("╠════════════════════════════════════════════╣");
-    Console.WriteLine("║  1. BFS (tüm başlangıç düğümleri)         ║");
+    Console.WriteLine("║  1. BFS (tüm başlangıç düğümleri)          ║");
     Console.WriteLine("║  2. Döngü Tespiti                          ║");
-    Console.WriteLine("║  3. Dijkstra (pozitif ağırlıklar, d. 0)   ║");
-    Console.WriteLine("║  4. Dijkstra (negatif ağırlıklar, d. 0)   ║");
-    Console.WriteLine("║  5. Bellman-Ford (poz. ağırlıklar, d. 0)  ║");
-    Console.WriteLine("║  6. Bellman-Ford (neg. ağırlıklar, d. 0)  ║");
-    Console.WriteLine("║  7. Dijkstra - Bellman-Ford kıyası        ║");
+    Console.WriteLine("║  3. Dijkstra (pozitif ağırlıklar, d. 0)    ║");
+    Console.WriteLine("║  4. Dijkstra (negatif ağırlıklar, d. 0)    ║");
+    Console.WriteLine("║  5. Bellman-Ford (poz. ağırlıklar, d. 0)   ║");
+    Console.WriteLine("║  6. Bellman-Ford (neg. ağırlıklar, d. 0)   ║");
+    Console.WriteLine("║  7. Dijkstra - Bellman-Ford kıyası         ║");
     Console.WriteLine("║  8. Floyd-Warshall                         ║");
-    Console.WriteLine("║  9. Prim (düğüm 0'dan)                    ║");
+    Console.WriteLine("║  9. Prim (düğüm 0'dan)                     ║");
     Console.WriteLine("║  0. Çıkış                                  ║");
     Console.WriteLine("╚════════════════════════════════════════════╝");
     Console.Write("\nSeçim yapın: ");
@@ -25,7 +25,7 @@ while (true)
 
     if (key is "1" or "2" or "3" or "4" or "5" or "6" or "7" or "8" or "9")
     {
-        var useNegative = key is "4" or "6";
+        var useNegative = key is "4" or "6" or "7";
         var edges = useNegative
             ? GraphAlgorithms.Graph.GraphBase.GetNegativeWeightEdges()
             : GraphAlgorithms.Graph.GraphBase.GetDirectedEdges();
@@ -63,9 +63,7 @@ while (true)
             BellmanFord.Run(0, useNegativeWeights: true);
             break;
         case "7":
-            Console.WriteLine("Bellman-Ford negatif ağırlıklarla çalıştırılıyor (Dijkstra karşılaştırması dahil)...");
-            Console.WriteLine();
-            BellmanFord.Run(0, useNegativeWeights: true);
+            BellmanFord.RunComparison(0);
             break;
         case "8":
             new FloydWarshall().Run();

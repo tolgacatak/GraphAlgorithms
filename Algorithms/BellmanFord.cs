@@ -30,9 +30,6 @@ public class BellmanFord
         var hasNegativeCycle = edges.Any(edge => dist[edge.From] != int.MaxValue && dist[edge.From] + edge.Weight < dist[edge.To]);
 
         PrintResults(startVertex, dist, prev, useNegativeWeights, hasNegativeCycle);
-
-        if (useNegativeWeights)
-            PrintComparison(startVertex, dist, prev);
     }
 
     private static void PrintResults(int startVertex, int[] dist, int[] prev, bool useNegativeWeights, bool hasNegativeCycle)
@@ -67,6 +64,31 @@ public class BellmanFord
         }
 
         Console.WriteLine();
+    }
+
+    public static void RunComparison(int startVertex)
+    {
+        var edges = GraphBase.GetNegativeWeightEdges();
+        var n = GraphBase.VertexCount;
+        var dist = new int[n];
+        var prev = new int[n];
+        Array.Fill(dist, int.MaxValue);
+        Array.Fill(prev, -1);
+        dist[startVertex] = 0;
+
+        for (var i = 0; i < n - 1; i++)
+        {
+            var updated = false;
+            foreach (var edge in edges.Where(edge => dist[edge.From] != int.MaxValue && dist[edge.From] + edge.Weight < dist[edge.To]))
+            {
+                dist[edge.To] = dist[edge.From] + edge.Weight;
+                prev[edge.To] = edge.From;
+                updated = true;
+            }
+            if (!updated) break;
+        }
+
+        PrintComparison(startVertex, dist, prev);
     }
 
     private static void PrintComparison(int startVertex, int[] bfDist, int[] bfPrev)
